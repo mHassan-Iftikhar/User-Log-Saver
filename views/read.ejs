@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="main w-full h-full bg-zinc-900 p-10 text-white">
+    <div class="main w-full h-auto bg-zinc-900 p-10 text-white">
         <!-- Nav Bar -->
         <div class="nav px-6 py-4 bg-zinc-800 w-full rounded-xl">
             <a href="/" class="text-zinc-600 mr-4">Home</a>
@@ -19,7 +19,7 @@
             <% users.forEach(function(user) { %>
                 <div class="user w-60 p-4 bg-zinc-800 rounded-lg">
                     <div class="w-full h-52 rounded-lg bg-zinc-700">
-                        <img src="<%= user.image %>" alt="">
+                        <img class="w-full h-full object-cover overflow-hidden" src="<%= user.image %>" alt="">
                     </div>
                     <h3 class="text-xl tracking-tighter mt-3"><%= user.name %></h3>
                     <h5 class="text-zinc-500 text-sm"><%= user.email %></h5>
