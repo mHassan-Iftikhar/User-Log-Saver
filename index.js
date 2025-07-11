@@ -9,8 +9,7 @@ app.use(express.urlencoded({extented: true}));
 app.use(express.static(path.join('public')));
 
 app.get('/', async (req, res) => {
-    let users = await User.find()
-    res.render("index", {users});
+    res.render("index");
 });
 
 app.get('/read', async (req, res) => {
@@ -18,12 +17,14 @@ app.get('/read', async (req, res) => {
     res.render("read", { users });
 });
 
-app.get('/edit', (req, res) => {
-    res.render("edit");
+app.get('/edit/:userID', async (req, res) => {
+    let user = await User.findOne({_id: req.params.userID});
+    res.render("edit", {user});
 });
 
-app.get('/delete', (req, res) => {
-    res.render("delete");
+app.get('/delete/:userID', async (req, res) => {
+    let user = await User.findOneAndDelete({_id: req.params.userID});
+    res.redirect("/read");
 });
 
 app.post('/create', async (req, res) => {
@@ -34,7 +35,13 @@ app.post('/create', async (req, res) => {
         email,
         image,
     }); 
-    res.send(createdUser);  
+    res.redirect("/read");
+});
+
+app.post('/update/:userID', async (req, res) => {
+    let {name, email, image} = req.body;
+    let user = await User.findOneAndUpdate({_id: req.params.userID}, {name, email, image}, {new: true});
+    res.redirect("/read");
 });
 
 app.listen(3000);

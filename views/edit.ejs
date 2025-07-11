@@ -9,11 +9,18 @@
 </head>
 <body>
     <div class="main w-full h-full bg-zinc-900 p-10 text-white">
-        <!-- Nav Bar -->
-        <div class="nav px-6 py-4 bg-zinc-800 w-full rounded-xl">
+        <!-- NavBar -->
+        <div class="nav px-6 py-4 bg-zinc-800 w-ful rounded-xl">
             <a href="/" class="text-zinc-600 mr-4">Home</a>
             <a href="/read" class="text-zinc-600">Read</a>
         </div>
+        <h1 class="text-2xl tracking tighter mt-10">Update User</h1>
+        <form action="/update/<%= user.id %>" method="post" class="mt-5">
+            <input class="px-5 py-2 rounded-xl bg-transparent border-2 border-zinc-800 outline-none" name="name" type="text" placeholder="name" value="<%= user.name %>">
+            <input class="px-5 py-2 rounded-xl bg-transparent border-2 border-zinc-800 outline-none" name="email" type="text" placeholder="email" value="<%= user.email %>">
+            <input class="px-5 py-2 rounded-xl bg-transparent border-2 border-zinc-800 outline-none" name="image" type="text" placeholder="image url" value="<%= user.image %>">
+            <input class="px-5 py-2 bg-yellow-500 text-zinc-800 rounded-lg ml-3" type="submit" placeholder="Update User">
+        </form>
     </div>
 
     <script src="../javascripts/script.js"></script>

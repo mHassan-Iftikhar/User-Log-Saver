@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="main w-full h-auto bg-zinc-900 p-10 text-white">
+    <div class="main w-full h-full bg-zinc-900 p-10 text-white">
         <!-- Nav Bar -->
         <div class="nav px-6 py-4 bg-zinc-800 w-full rounded-xl">
             <a href="/" class="text-zinc-600 mr-4">Home</a>
@@ -16,19 +16,23 @@
         </div>
         <h1 class="text-2xl  mt-10">All Users</h1>
         <div class="users mt-5 flex flex-wrap gap-3">
-            <% users.forEach(function(user) { %>
-                <div class="user w-60 p-4 bg-zinc-800 rounded-lg">
-                    <div class="w-full h-52 rounded-lg bg-zinc-700">
-                        <img class="w-full h-full object-cover overflow-hidden" src="<%= user.image %>" alt="">
+            <% if(users.length > 0) { %>
+                <% users.forEach(function(user) { %>
+                    <div class="user w-60 p-4 bg-zinc-800 rounded-lg">
+                        <div class="w-full h-52 rounded-lg bg-zinc-700">
+                            <img class="w-full h-full object-cover overflow-hidden rounded-lg" src="<%= user.image %>" alt="">
+                        </div>
+                        <h3 class="text-xl tracking-tighter mt-3"><%= user.name %></h3>
+                        <h5 class="text-zinc-500 text-sm"><%= user.email %></h5>
+                        <div class="flex justify-between mt-5">
+                            <a class="text-zinc-600" href="/edit/<%= user._id %>">Edit User</a>
+                            <a class="text-red-700" href="/delete/<%= user._id %>">Delete User</a>
+                        </div>
                     </div>
-                    <h3 class="text-xl tracking-tighter mt-3"><%= user.name %></h3>
-                    <h5 class="text-zinc-500 text-sm"><%= user.email %></h5>
-                    <div class="flex justify-between mt-5">
-                        <a class="text-zinc-600" href="/edit">Edit User</a>
-                        <a class="text-red-700" href="/delete">Delete User</a>
-                    </div>
-                </div>
-            <% }) %>
+                <% }) %>
+            <% } else { %>
+                <div class="text-lg text-zinc-600">No user created</div>
+            <% } %>
         </div>
     </div>
 
